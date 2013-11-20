@@ -1,6 +1,17 @@
 <%= form_for(@user) do |f| %>
   <%= f.label :email %>
   <%= f.text_field :email %>
+  <%= f.label :phone %>
+  <%= f.text_field :phone, :class => "phone_us"  %>
   <br />
   <%= f.submit "Sign in" %>
 <% end %>
+
+
+<script type="text/javascript">
+$(document).ready(function(){
+
+  $('.phone_us').mask('(000) 000-0000');
+
+});
+</script>

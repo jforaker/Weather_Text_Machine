@@ -27,7 +27,7 @@ def show
   private
 
   def user_params
-    params.require('user').permit(:email)
+    params.require('user').permit(:email, :phone)
   end
 
 end
