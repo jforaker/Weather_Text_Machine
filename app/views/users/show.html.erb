@@ -2,3 +2,9 @@
 <p>User: <%= @user.name %></p>
 <p>Email: <%= @user.email if @user.email %></p>
 <p>phone: <%= @user.phone if @user.phone %></p>
+
+
+<h2>Great, get my weather!</h2>
+<%= link_to "Show me", forecasts_index_path(), :class => 'btn'   %>
+
+

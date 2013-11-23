@@ -1,4 +1,15 @@
-<h3>Home</h3>
-<% @users.each do |user| %>
-  <p>User: <%=link_to user.name, user %></p>
-<% end %>
+<h3>Hello Welcome to Weather Text Machine</h3>
+
+<nav class="nav">
+  <% if user_signed_in? %>
+      <li>
+        Logged in as <%= current_user.name %>
+      </li>
+
+      <%= render "users/edit" %>
+  <% else %>
+      <li>
+        <%= link_to 'Login with Twitter to get started.', signin_path %>
+      </li>
+  <% end %>
+</nav>

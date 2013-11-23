@@ -1,15 +1,16 @@
-<%= link_to "Home", root_path, :class => 'brand' %>
-<nav class="nav">
-  <% if user_signed_in? %>
-    <li>
-    Logged in as <%= current_user.name %>
-    </li>
-    <li>
-    <%= link_to 'Logout', signout_path %>
-    </li>
-  <% else %>
-    <li>
-    <%= link_to 'Login', signin_path %>
-    </li>
-  <% end %>
-</nav>
+<% if user_signed_in? %>
+    <nav class="navbar navbar-default" role="navigation">
+      <div class="navbar-header">
+        <ul class="nav navbar-nav">
+          <li>
+            <%= link_to "Home", root_path, :class => 'brand' %>
+          </li>
+          <li>
+            <%= link_to 'Logout', signout_path %>
+          </li>
+        </ul>
+      </div>
+    </nav>
+<% end %>
+
+

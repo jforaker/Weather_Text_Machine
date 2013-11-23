@@ -14,8 +14,8 @@ class SessionsController < ApplicationController
 # http://guides.rubyonrails.org/security.html#session-fixation-countermeasures
     reset_session
     session[:user_id] = user.id
-    if user.email.blank?
-      redirect_to edit_user_path(user), :alert => "Please enter your email address."
+    if user.phone.blank?
+      redirect_to root_url(user), :alert => "Enter your info to get the weather"
     else
       redirect_to root_url, :notice => 'Signed in!'
     end
