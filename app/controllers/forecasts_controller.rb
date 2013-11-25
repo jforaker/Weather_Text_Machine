@@ -1,6 +1,5 @@
 class ForecastsController < ApplicationController
 
-
   def show
     @forecast = Forecast.find(params[:id])
     respond_to do |format|
@@ -11,7 +10,8 @@ class ForecastsController < ApplicationController
 
   def index
     key = ENV['WEATHER_API_KEY']
-    @weather = HTTParty.get 'http://api.worldweatheronline.com/free/v1/weather.ashx?q=' + current_user.zip_code.to_s + '&format=json&num_of_days=1&key=' + key
+    loc =   URI.encode(current_user.location)
+    @weather = HTTParty.get 'http://api.worldweatheronline.com/free/v1/weather.ashx?q=' + loc + '&format=json&num_of_days=1&key=' + key
     response = JSON.parse(@weather.body)
     response["data"]["current_condition"].map do |item|
       i =    item["weatherIconUrl"][0]["value"]
@@ -20,9 +20,6 @@ class ForecastsController < ApplicationController
 
     end
   end
-
-
-
 
   def forecast(temp, img)
 
@@ -54,6 +51,5 @@ class ForecastsController < ApplicationController
       render :index
     end
   end
-
 
 end
