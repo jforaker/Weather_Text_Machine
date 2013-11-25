@@ -10,7 +10,8 @@ class ForecastsController < ApplicationController
   end
 
   def index
-    @weather = HTTParty.get 'http://api.worldweatheronline.com/free/v1/weather.ashx?q=' + current_user.zip_code.to_s + '&format=json&num_of_days=1&key=4tcmwysrm2c44jcpr8jd3d9y'
+    key = ENV['WEATHER_API_KEY']
+    @weather = HTTParty.get 'http://api.worldweatheronline.com/free/v1/weather.ashx?q=' + current_user.zip_code.to_s + '&format=json&num_of_days=1&key=' + key
     response = JSON.parse(@weather.body)
     response["data"]["current_condition"].map do |item|
       i =    item["weatherIconUrl"][0]["value"]
