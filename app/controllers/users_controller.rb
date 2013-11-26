@@ -24,7 +24,7 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find_by_permalink(params[:id])
-    @zipper = current_user.zip_code.to_s
+    #@zipper = current_user.zip_code.to_s
     respond_to do |format|
       format.html
       format.json { render :json => @user }
