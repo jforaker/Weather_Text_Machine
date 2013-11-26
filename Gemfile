@@ -19,6 +19,11 @@ gem 'multi_json'
 
 gem 'json'
 
+gem 'whenever', :require => false
+
+gem 'loadjs'
+
+
 group :development do
   gem 'sqlite3'
 

@@ -5,10 +5,12 @@
     <title><%= content_for?(:title) ? yield(:title) : "Weather Text Machine" %></title>
     <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Weather Text Machine" %>">
     <%= stylesheet_link_tag "application", media: "all", "data-turbolinks-track" => true %>
-    <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+    <link href='http://api.tiles.mapbox.com/mapbox.js/v1.3.1/mapbox.css' rel='stylesheet' />
+
+    <%= javascript_include_tag "application", "data-turbolinks-track" => false %>
     <%= csrf_meta_tags %>
   </head>
-  <body>
+  <body data-controller="<%= controller_name %>" data-action="<%= action_name %>">
     <header>
       <%= render 'layouts/navigation' %>
     </header>
@@ -16,5 +18,7 @@
        <%= render 'layouts/messages' %>
        <%= yield %>
     </main>
+    <script src='http://api.tiles.mapbox.com/mapbox.js/v1.3.1/mapbox.js'></script>
+
   </body>
 </html>

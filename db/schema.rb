@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131125212038) do
+ActiveRecord::Schema.define(version: 20131126002915) do
 
   create_table "calls", force: true do |t|
     t.datetime "created_at"
@@ -24,6 +24,7 @@ ActiveRecord::Schema.define(version: 20131125212038) do
     t.datetime "updated_at"
     t.integer  "forecast_id"
     t.string   "image"
+    t.string   "location"
   end
 
   create_table "users", force: true do |t|
@@ -36,6 +37,7 @@ ActiveRecord::Schema.define(version: 20131125212038) do
     t.string   "phone"
     t.integer  "zip_code"
     t.string   "location"
+    t.string   "permalink"
   end
 
 end

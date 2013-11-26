@@ -1,13 +1,16 @@
 class Forecast < ActiveRecord::Base
-  #before_save :create_forecast_id
+  belongs_to :user
+  #before_save :create_forecast_permalink
   #
   #def to_param
-  #  forecast_id
+  #  location
   #end
   #
   #private
-  #def create_forecast_id
-  #  self.forecast_id = rand(123423423)
+  #
+  #def create_forecast_permalink
+  #  #namer = Forecast.location.downcase.tr(" ", "_")
+  #  self.location = self.location + Time.now.to_datetime.to_s
   #end
 
 end

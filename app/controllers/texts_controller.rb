@@ -2,10 +2,10 @@ class TextsController < ApplicationController
 
   def new
     @name = current_user.name
-    @zip_code = current_user.zip_code
+    @location = current_user.location
     @phone_number = current_user.phone
     @forecast = Forecast.last
-    @message_body = "Hi " + @name + "- in " + @zip_code.to_s + ', the weatherman says: hey ' + @forecast.message
+    @message_body = "Hi " + @name + "- in " + @location + ', the weatherman says: ' + @forecast.message
     make_call
   end
 

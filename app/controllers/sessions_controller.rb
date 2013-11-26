@@ -12,6 +12,8 @@ class SessionsController < ApplicationController
 # Reset the session after successful login, per
 # 2.8 Session Fixation – Countermeasures:
 # http://guides.rubyonrails.org/security.html#session-fixation-countermeasures
+    user.permalink =    User.where(
+                                   :permalink => auth['info']['name'] || "")
     reset_session
     session[:user_id] = user.id
     if user.phone.blank?

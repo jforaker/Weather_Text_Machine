@@ -1,10 +1,7 @@
-
 class UsersController < ApplicationController
 
   before_filter :authenticate_user!
   before_filter :correct_user?, :except => [:index]
-
-
 
 
   def index
@@ -12,11 +9,11 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = User.find(params[:id])
+    @user = User.find_by_permalink(params[:id])
   end
 
   def update
-    @user = User.find(params[:id])
+    @user = User.find_by_permalink(params[:id])
     if @user.update_attributes(user_params)
      # get_weather
       redirect_to @user
@@ -26,17 +23,13 @@ class UsersController < ApplicationController
   end
 
   def show
-    @user = User.find(params[:id])
+    @user = User.find_by_permalink(params[:id])
     @zipper = current_user.zip_code.to_s
     respond_to do |format|
       format.html
       format.json { render :json => @user }
     end
   end
-
-
-
-
 
   private
 

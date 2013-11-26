@@ -17,7 +17,6 @@ class ForecastsController < ApplicationController
       i =    item["weatherIconUrl"][0]["value"]
       s = item["temp_F"]
       forecast(s, i)
-
     end
   end
 
@@ -30,13 +29,14 @@ class ForecastsController < ApplicationController
     end
     @degrees = temp
     def results
-      if @degrees.to_i < 70
+      if @degrees.to_i < 70 && @degrees.to_i >= 40
         "you better bring a jacket, it is going to be #{@degrees} degrees today."
+      elsif @degrees.to_i < 40
+        "dude, its freezing. #{@degrees} degrees and not getting any hotter"
       else
         "grab your sunscreen, it's going to be #{@degrees} degrees today."
       end
     end
-
     save_forecast(results, image)
   end
 
@@ -45,11 +45,16 @@ class ForecastsController < ApplicationController
     @forecast = Forecast.new(forecast_params)
     @forecast.image = image
     @forecast.message = results
+    @forecast.location = URI.encode(current_user.location).downcase.tr(" ", "_")
     if  @forecast.save
       redirect_to  @forecast
     else
       render :index
     end
+  end
+
+  def forecast_params
+    params.require('forecast').permit(:location)
   end
 
 end
