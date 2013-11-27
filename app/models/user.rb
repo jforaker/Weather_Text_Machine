@@ -12,6 +12,7 @@ class User < ActiveRecord::Base
         user.name = auth['info']['name'] || ""
         user.email = auth['info']['email'] || ""
         user.permalink =  (auth['info']['name'] || "").downcase.tr(" ", "_")
+        user.image =  auth['info']['image'] || ""
       end
     end
   end

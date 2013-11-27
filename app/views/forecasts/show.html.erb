@@ -1,13 +1,5 @@
-<style>
-    body { margin:0; padding:0; }
-    #map { position:absolute; top:0; bottom:0; width:100%;width: 98em;
-        margin-left: -13px; opacity: 50; z-index: 1}
-</style>
 
-
-<div class="cont" style="z-index: 10 !important;position: absolute;
-        background: white;
-        padding: 40px;">
+<div class="cont">
   <h1>Forecast</h1>
   <p><%= @forecast.message %></p>
   <%= image_tag @forecast.image %>

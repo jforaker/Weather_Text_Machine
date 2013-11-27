@@ -7,6 +7,18 @@
 @import "../../../vendor/assets/stylesheets/flat-ui-sass/flat-ui.sass";
 
 // make all images responsive by default
+
+body { margin:0; padding:0; }
+#map { position:absolute; top:0; bottom:0; width:100%;width: 98em;
+  margin-left: -13px; opacity: 0.5; z-index: 1}
+
+.cont{
+  z-index: 10 !important;
+  position: absolute;
+  background: white;
+  padding: 40px;
+}
+
 img {
   @extend .img-responsive;
   margin: 0 auto;
@@ -37,9 +49,8 @@ img {
 }
 // apply styles to HTML elements
 // to make views framework-neutral
-main {
+.main {
   @extend .container;
-  background-color: #eee;
   padding-bottom: 80px;
   width: 100%;
   margin-top: 51px; // accommodate the navbar

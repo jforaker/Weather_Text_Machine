@@ -1,4 +1,4 @@
-<%= form_for(@user) do |f| %>
+<%= form_for @user, :url => forecasts_path, :html => {:method => :post} do |f| %>
 
     <div class="form-group">
       <%= f.label :phone %>
@@ -10,7 +10,7 @@
       <%= f.text_field :location %>
     </div>
     <br />
-    <%= f.submit "Submit", :class => 'btn' %>
+    <%= f.submit "Get my weather!", :class => 'btn' %>
 <% end %>
 
 

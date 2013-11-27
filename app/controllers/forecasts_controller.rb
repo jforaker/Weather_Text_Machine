@@ -8,17 +8,37 @@ class ForecastsController < ApplicationController
     end
   end
 
-  def index
-    key = ENV['WEATHER_API_KEY']
-    loc =   URI.encode(current_user.location)
-    @weather = HTTParty.get 'http://api.worldweatheronline.com/free/v1/weather.ashx?q=' + loc + '&format=json&num_of_days=1&key=' + key
-    response = JSON.parse(@weather.body)
-    response["data"]["current_condition"].map do |item|
-      i =    item["weatherIconUrl"][0]["value"]
-      s = item["temp_F"]
-      forecast(s, i)
+  #testing stuff
+  def create
+    @user = current_user
+    if @user.update_attributes(user_params)
+      # get_weather
+      key = ENV['WEATHER_API_KEY']
+      loc =   URI.encode(current_user.location)
+      @weather = HTTParty.get 'http://api.worldweatheronline.com/free/v1/weather.ashx?q=' + loc + '&format=json&num_of_days=1&key=' + key
+      response = JSON.parse(@weather.body)
+      response["data"]["current_condition"].map do |item|
+        i =    item["weatherIconUrl"][0]["value"]
+        s = item["temp_F"]
+        forecast(s, i)
+      end
+    else
+      render :edit
     end
+
   end
+
+  #def index
+  #  key = ENV['WEATHER_API_KEY']
+  #  loc =   URI.encode(current_user.location)
+  #  @weather = HTTParty.get 'http://api.worldweatheronline.com/free/v1/weather.ashx?q=' + loc + '&format=json&num_of_days=1&key=' + key
+  #  response = JSON.parse(@weather.body)
+  #  response["data"]["current_condition"].map do |item|
+  #    i =    item["weatherIconUrl"][0]["value"]
+  #    s = item["temp_F"]
+  #    forecast(s, i)
+  #  end
+  #end
 
   def forecast(temp, img)
 
@@ -55,6 +75,12 @@ class ForecastsController < ApplicationController
 
   def forecast_params
     params.require('forecast').permit(:location)
+  end
+
+  private
+
+  def user_params
+    params.require('user').permit(:email, :phone, :zip_code, :location)
   end
 
 end

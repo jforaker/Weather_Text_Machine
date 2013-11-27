@@ -20,9 +20,20 @@ load("forecasts#show", function (controller, action) {
 
             geocoder.query(userLocation, showMap);
 
+            // var precipitation = L.tileLayer.wms("http://nowcoast.noaa.gov/wms/com.esri.wms.Esrimap/obs", {
+            //     format: 'image/png',
+            //     transparent: true,
+            //     layers: 'RAS_RIDGE_NEXRAD'
+            // }).addTo(map);
+
             function showMap(err, data) {
                 map.fitBounds(data.lbounds);
                 map.setZoom(12);
+                //lets disable zoom
+                map.touchZoom.disable();
+                map.doubleClickZoom.disable();
+                map.scrollWheelZoom.disable();
+                map.dragging.disable();
 
             }
         });

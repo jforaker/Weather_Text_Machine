@@ -10,14 +10,16 @@
     <%= javascript_include_tag "application", "data-turbolinks-track" => false %>
     <%= csrf_meta_tags %>
   </head>
+
   <body data-controller="<%= controller_name %>" data-action="<%= action_name %>">
+
     <header>
       <%= render 'layouts/navigation' %>
     </header>
-    <main role="main">
+    <div class="main">
        <%= render 'layouts/messages' %>
        <%= yield %>
-    </main>
+    </div>
     <script src='http://api.tiles.mapbox.com/mapbox.js/v1.3.1/mapbox.js'></script>
 
   </body>

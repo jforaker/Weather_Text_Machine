@@ -1,15 +1,18 @@
-<h3>Hello Welcome to Weather Text Machine</h3>
+<h3>Hello and Welcome to Weather Text Machine</h3>
+<br>
 
-<nav class="nav">
+<div class="user">
   <% if user_signed_in? %>
-      <li>
-        Logged in as <%= current_user.name %>
-      </li>
+      <img style="display: inline-block" src="<%= current_user.image %>">
+
+      <h5 style="display: inline;">Logged in as <%= current_user.name %></h5>
+
+</div>
+      <br>
 
       <%= render "users/edit" %>
   <% else %>
-      <li>
+      <div>
         <%= link_to 'Login with Twitter to get started.', signin_path %>
-      </li>
+      </div>
   <% end %>
-</nav>
